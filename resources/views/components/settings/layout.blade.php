@@ -1,15 +1,23 @@
 <!doctype html>
 <html lang="tr" class="h-full">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $title ?? 'StokPro' }}</title>
+  <!-- LAYOUT HEAD HIT -->
+  @vite(['resources/css/app.css','resources/js/app.js'])
 
-    {{-- Tailwind + app JS (Vite) --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    {{-- Livewire (v3'te şart değil ama zararı yok) --}}
-    @livewireStyles
+  @php
+      $manifestPath = public_path('build/manifest.json');
+      $man = file_exists($manifestPath) ? json_decode(file_get_contents($manifestPath), true) : null;
+      $cssFile = $man['resources/css/app.css']['file'] ?? null;
+      $jsFile  = $man['resources/js/app.js']['file'] ?? null;
+  @endphp
+  @if($cssFile)
+    <link rel="stylesheet" href="{{ asset('build/'.$cssFile) }}">
+    <!-- CSS: {{ asset('build/'.$cssFile) }} -->
+  @endif
+  @if($jsFile)
+    <script type="module" src="{{ asset('build/'.$jsFile) }}"></script>
+    <!-- JS: {{ asset('build/'.$jsFile) }} -->
+  @endif
 </head>
 <body class="h-full antialiased">
 <div class="min-h-screen bg-neutral-900 text-neutral-100">

@@ -49,7 +49,7 @@ class Form extends Component
 
     public function render()
     {
-        return view('livewire.products.form')
-            ->layout('components.admin.layout');
+return view('livewire.products.form')
+    ->layout('components.admin.layout', ['title' => 'Ürün Oluştur/Düzenle']);
     }
 }

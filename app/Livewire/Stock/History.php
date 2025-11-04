@@ -22,7 +22,7 @@ class History extends Component
         }
         $items = $q->paginate(20);
 
-        return view('livewire.stock.history', compact('items'))
-            ->layout('components.admin.layout');
+return view('livewire.stock.history')
+    ->layout('components.admin.layout', ['title' => 'Stok Hareketleri']);
     }
 }
