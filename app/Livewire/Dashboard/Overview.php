@@ -23,9 +23,7 @@ class Overview extends Component
         $this->recent = StockMovement::with(['product','user'])
             ->latest()->limit(10)->get();
 
-        return view('livewire.dashboard.overview', [
-            'stats'  => $this->stats,
-            'recent' => $this->recent,
-        ])->layout('components.admin.layout', ['title' => 'Dashboard']);
+    return view('livewire.dashboard.overview')
+        ->layout('layouts.admin', ['title' => 'Dashboard']);
     }
 }

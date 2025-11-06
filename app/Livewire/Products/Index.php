@@ -51,9 +51,7 @@ class Index extends Component
             ->orderBy('name')
             ->paginate($this->perPage);
 
-        return view('livewire.products.index', [
-                'products' => $products,
-            ])
-            ->layout('components.admin.layout', ['title' => 'Ürünler']);
+    return view('livewire.products.index', compact('products'))
+        ->layout('layouts.admin', ['title' => 'Ürünler']);
     }
 }
